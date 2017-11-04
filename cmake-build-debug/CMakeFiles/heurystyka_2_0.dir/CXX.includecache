@@ -1,0 +1,50 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/main.cpp
+iostream
+-
+algorithm
+-
+fstream
+-
+cstdlib
+-
+w_lib.h
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/w_lib.h
+utilities.h
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/utilities.h
+
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/utilities.cpp
+utilities.h
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/utilities.h
+fstream
+-
+stdio.h
+-
+
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/utilities.h
+string
+-
+
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/w_lib.cpp
+w_lib.h
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/w_lib.h
+utilities.h
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/utilities.h
+iostream
+-
+stdio.h
+-
+algorithm
+-
+
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/w_lib.h
+utilities.h
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/utilities.h
+

@@ -1,0 +1,3 @@
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/cmake-build-debug/CMakeFiles/heurystyka_2_0.dir
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/cmake-build-debug/CMakeFiles/rebuild_cache.dir

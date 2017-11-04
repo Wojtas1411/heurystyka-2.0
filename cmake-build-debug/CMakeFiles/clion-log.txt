@@ -1,0 +1,4 @@
+"D:\Program Files (x86)\JetBrains\CLion 2017.2.3\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" "C:\Users\Y700\OneDrive\OK lab\heurystyka 2.0"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Y700/OneDrive/OK lab/heurystyka 2.0/cmake-build-debug
