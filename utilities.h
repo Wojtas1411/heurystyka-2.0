@@ -17,7 +17,7 @@ extern int tab_of_elem[1000];    ///wartosci poszczegolnych procesow - elementow
 struct data_pack   ///struktura w ktorej przechowywane sa wejsciowe parametry funkcji
 {
     int proces_tab[1000]={0}; /// tablica wartosci procesow
-    int processors_tab[1000]={0};  ///tablica wartosci procesorow
+    int processors_tab[10000]={0};  ///tablica wartosci procesorow
     int proces_start=0; /// proces od ktorego zaczynamy
     int proces_end=0; ///proces na ktorym konczymy
     int processors_start=0; ///procesor od ktorego zaczynamy
