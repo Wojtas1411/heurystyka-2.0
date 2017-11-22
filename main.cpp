@@ -14,7 +14,7 @@ int tab_of_elem[1000]={0};
 
 int main()
 {
-    read_data("m50n200.txt");
+    read_data("m25.txt");
 
     int avarage_process = sumof(tab_of_elem,num_of_elem)/num_of_elem;;
     int optimal_value_on_processor = sumof(tab_of_elem,num_of_elem)/num_of_proc;
@@ -48,6 +48,15 @@ int main()
 
     heuristics1(test3);
 
-    print_data_pack(test3);
+    //print_data_pack(test3);
+
+
+    ///dziwnyjakis
+    data_pack test4;
+    test4 = default_data_container(test4);
+
+    prawie_dokladny(test4);
+
+    //print_data_pack(test4);
 
 }
