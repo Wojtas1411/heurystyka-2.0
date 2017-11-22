@@ -78,18 +78,18 @@ void greedy2(data_pack &tmp)
 
 void greedy2_old(int tab0[], int start0, int end0, int tabp[], int startp, int endp)
 {
-    printf("Algorytm Zachlanny 2\n");
+    //printf("Algorytm Zachlanny 2\n");
     sort(tab0+start0,tab0+end0,greater<int>());
     for(int i=start0;i<end0;i++)
     {
         tabp[find_lowest_index(tabp,startp,endp)]+=tab0[i];
     }
-    printf("Czas trwania procesow %d\n\n",tabp[find_highest_index(tabp,startp,endp)]);
+    //printf("Czas trwania procesow %d\n\n",tabp[find_highest_index(tabp,startp,endp)]);
 }
 
 void heuristics1(data_pack &tmp)
 {
-    printf("Algorytm kombinowany1\n\n");
+    printf("Algorytm kombinowany1\n");
 
     /***dziala na podstawie algorytmu zachlannego 2
     algorytm sprawdza ilosc procesorow
@@ -146,10 +146,10 @@ void heuristics1(data_pack &tmp)
     }
     if(op_on_proc2 == op_on_proc)
     {
-        printf("nieistotne poczatek\n\n");
-        ///TODO
+        //printf("nieistotne poczatek\n\n");
+        //TODO
         greedy2_old(tmp.proces_tab,tmp2,tmp1,tmp.processors_tab,tmp.processors_start,p1_size_p);
-        printf("nieistotne koniec\n\n");
+        //printf("nieistotne koniec\n\n");
     }
 
     //parzystosc op on proc v2
@@ -183,14 +183,43 @@ void heuristics1(data_pack &tmp)
     }
     if(op_on_proc2 != op_on_proc)
     {
-        printf("nieistotne poczatek\n\n");
-        ///TODO
+        //printf("nieistotne poczatek\n\n");
+        //TODO
         greedy2_old(tmp.proces_tab,tmp1,tmp2,tmp.processors_tab,p1_size_p,tmp.processors_end);
-        printf("nieistotne koniec\n\n");
+        //printf("nieistotne koniec\n\n");
     }
 
-    printf("Koniec algorytmu kombinowanego\n");
-    printf("Czas trwania procesow %d\n\n",tmp.processors_tab[find_highest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]);
+    //printf("Koniec algorytmu kombinowanego\n");
+    printf("Czas trwania procesow %d\n",tmp.processors_tab[find_highest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]);
 
 }
 
+void prawie_dokladny(data_pack &tmp)
+{
+    printf("Jakis dziwny\n");
+    for(int k=10;k!=0;k--){
+        sort(tmp.proces_tab+tmp.proces_start,tmp.proces_tab+tmp.proces_end,greater<int>());
+        int param = sumof(tmp.proces_tab,tmp.proces_end)/tmp.processors_end;
+        int s=0;
+        bool used[10000] = {false};
+        for(int i =tmp.processors_start;i<tmp.processors_end;i++){
+            s = param;
+            for(int j= tmp.proces_start;j<tmp.proces_end;j++){
+                if(s+k>=tmp.proces_tab[j] && !used[j]){
+                    used[j] = true;
+                    s-=tmp.proces_tab[j];
+                }
+            }
+            tmp.processors_tab[i]=param-s;
+        }
+        for(int j=tmp.proces_start;j<tmp.proces_end;j++){
+            if(!used[j]){
+                    tmp.processors_tab[find_lowest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]+=tmp.proces_tab[j];
+
+            }
+        }
+        printf("Czas trwania procesow %d: %d\n",k,tmp.processors_tab[find_highest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]);
+    }
+
+
+}
