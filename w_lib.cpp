@@ -197,8 +197,9 @@ void heuristics1(data_pack &tmp)
 void prawie_dokladny(data_pack &tmp)
 {
     printf("Jakis dziwny\n");
-    for(int k=10;k!=0;k--){
+    for(int k=10;k>=0;k--){
         sort(tmp.proces_tab+tmp.proces_start,tmp.proces_tab+tmp.proces_end,greater<int>());
+        for(int i=0;i<1000;i++){tmp.processors_tab[i]=0;}
         int param = sumof(tmp.proces_tab,tmp.proces_end)/tmp.processors_end;
         int s=0;
         bool used[10000] = {false};
@@ -215,11 +216,95 @@ void prawie_dokladny(data_pack &tmp)
         for(int j=tmp.proces_start;j<tmp.proces_end;j++){
             if(!used[j]){
                     tmp.processors_tab[find_lowest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]+=tmp.proces_tab[j];
-
             }
         }
         printf("Czas trwania procesow %d: %d\n",k,tmp.processors_tab[find_highest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]);
     }
+}
+void plecakowy(data_pack &tmp){
+    printf("\nPlecakowy\n");
+    int param = sumof(tmp.proces_tab,tmp.proces_end)/tmp.processors_end;
+    //bool used[10000] = {false};
+    sort(tmp.proces_tab+tmp.proces_start,tmp.proces_tab+tmp.proces_end,greater<int>());
 
+    int *tab[10000] = {nullptr};
+    for(int i=0;i<tmp.proces_end;i++){
+        tab[i] = new int[param+5];
+    }
+
+    int temporary_proces_num = tmp.proces_end;
+    int temporary_tab[10000] = {0};
+    copy_tab(tmp.proces_tab,temporary_tab,0,temporary_proces_num);
+    int recently_used = 0;
+
+    for(int g=3;g>=0;g--){///parametr
+        for(int i=0;i<1000;i++){tmp.processors_tab[i]=0;}
+
+        temporary_proces_num = tmp.proces_end;
+        copy_tab(tmp.proces_tab,temporary_tab,0,temporary_proces_num);
+
+        for(int m=0;m<temporary_proces_num;m++)for(int n=0;n<param+g;n++)tab[m][n] = 0;
+
+        for(int i=0;i<tmp.processors_end;i++){
+            //cout<<"xd"<<endl;
+
+            sort(temporary_tab,temporary_tab+temporary_proces_num,greater<int>());
+
+            for(int m=0;m<temporary_proces_num;m++)for(int n=0;n<param+g;n++)tab[m][n] = 0;
+            temporary_proces_num -= recently_used;
+            recently_used = 0;
+
+            for(int j=0;j<param+g;j++){
+                if(temporary_tab[0]>=j){
+                    tab[0][j]=temporary_tab[0];
+                }
+            }
+            for(int j=1;j<tmp.proces_end;j++){
+                for(int k=0;k<param+g;k++){
+                    if(k>=temporary_tab[j]){
+                        if(tab[j-1][k-temporary_tab[j]]+temporary_tab[j] > tab[j-1][k]){
+                            tab[j][k]=tab[j-1][k-temporary_tab[j]]+temporary_tab[j];
+                        }
+                        else {
+                            tab[j][k] = tab[j - 1][k];
+                        }
+                    }
+                    else{
+                        tab[j][k] = tab[j-1][k];
+                    }
+                }
+            }
+            //cout<<"xd"<<endl;
+            int h = param+g-1;
+            for(int f = temporary_proces_num-1;f>0 && h>0;f--){
+                if(tab[f][h]>tab[f-1][h]){
+                    h-=temporary_tab[f];
+                    //cout<<temporary_tab[f]<<" ";
+                    tmp.processors_tab[i]+=temporary_tab[f];
+                    recently_used++;
+                    temporary_tab[f]=0;
+                }
+            }
+            //cout<<"|| "<<tmp.processors_tab[i]<<endl;
+
+        }
+        if(recently_used>0){
+            temporary_proces_num-=recently_used;
+            recently_used=0;
+        }
+
+        if(temporary_proces_num>0){
+            for(int j=0;j<temporary_proces_num;j++){
+                //cout<<temporary_tab[j]<<" ";
+                tmp.processors_tab[find_lowest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]+=temporary_tab[j];
+            }
+        }
+
+        printf("Czas trwania procesow %d: %d\n",g,tmp.processors_tab[find_highest_index(tmp.processors_tab,tmp.processors_start,tmp.processors_end)]);
+    }
+
+    for(int i=0;i<tmp.proces_end;i++){
+        delete[]tab[i];
+    }
 
 }

@@ -50,7 +50,6 @@ int main()
 
     //print_data_pack(test3);
 
-
     ///dziwnyjakis
     data_pack test4;
     test4 = default_data_container(test4);
@@ -58,5 +57,12 @@ int main()
     prawie_dokladny(test4);
 
     //print_data_pack(test4);
+
+    ///plecakowy
+
+    data_pack test5;
+    test5 = default_data_container(test5);
+
+    plecakowy(test5);
 
 }

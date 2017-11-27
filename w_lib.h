@@ -15,5 +15,6 @@ void greedy2(data_pack &tmp); ///jak powyzszy, tylko sortowane od najwiekszego
 void greedy2_old(int tab0[], int start0, int end0, int tabp[], int startp, int endp);
 
 void heuristics1(data_pack &tmp);///heurystyka opracowana przeze mnie :D
-void prawie_dokladny(data_pack &tmp);
+void prawie_dokladny(data_pack &tmp);///banalnie prosty algorytm zwraca bardzo dokladne wyniki - polega na dopakowywaniu procesow pojedynczo zachlannie
+void plecakowy(data_pack &tmp);
 #endif //HEURYSTYKA_2_0_W_LIB_H
