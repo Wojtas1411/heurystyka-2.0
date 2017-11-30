@@ -14,7 +14,7 @@ int tab_of_elem[1000]={0};
 
 int main()
 {
-    read_data("m25.txt");
+    read_data("m50n200.txt");
 
     int avarage_process = sumof(tab_of_elem,num_of_elem)/num_of_elem;;
     int optimal_value_on_processor = sumof(tab_of_elem,num_of_elem)/num_of_proc;
